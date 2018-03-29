@@ -56,6 +56,7 @@ RSpec.describe Newgistics::Order do
       customer: {
         first_name: 'Wade',
         last_name: 'Wilson',
+        name: 'Wade Wilson',
         address1: '75 Spring St',
         address2: '4th Floor',
         city: 'New York',
