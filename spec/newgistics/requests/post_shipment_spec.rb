@@ -24,7 +24,6 @@ RSpec.describe Newgistics::Requests::PostShipment do
         allow_duplicate: false,
         order_date: '2017-08-20',
         customer: {
-          name: 'Stephen Strange',
           first_name: 'Stephen',
           last_name: 'Strange',
           address1: '75 Spring St',
@@ -90,7 +89,6 @@ RSpec.describe Newgistics::Requests::PostShipment do
     end
 
     def verify_customer_xml(customer_xml)
-      expect(customer_xml).to have_element('Name').with_text('Stephen Strange')
       expect(customer_xml).to have_element('FirstName').with_text('Stephen')
       expect(customer_xml).to have_element('LastName').with_text('Strange')
       expect(customer_xml).to have_element('Address1').with_text('75 Spring St')

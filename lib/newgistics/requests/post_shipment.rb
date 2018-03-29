@@ -103,9 +103,7 @@ module Newgistics
       def customer_xml(customer, xml)
         xml.CustomerInfo do
           xml.Company customer.company
-          xml.Name customer.name
-          xml.FirstName customer.first_name
-          xml.LastName customer.last_name
+          customer_name_xml(customer, xml)
           xml.Address1 customer.address1
           xml.Address2 customer.address2
           xml.City customer.city
@@ -115,6 +113,15 @@ module Newgistics
           xml.Email customer.email
           xml.Phone customer.phone
           xml.IsResidential customer.is_residential
+        end
+      end
+
+      def customer_name_xml(customer, xml)
+        if customer.name
+          xml.Name customer.name
+        else
+          xml.FirstName customer.first_name
+          xml.LastName customer.last_name
         end
       end
     end
