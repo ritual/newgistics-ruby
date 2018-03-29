@@ -3,6 +3,7 @@ module Newgistics
     include Virtus.model
 
     attribute :company, String
+    attribute :name, String
     attribute :first_name, String
     attribute :last_name, String
     attribute :email, String
