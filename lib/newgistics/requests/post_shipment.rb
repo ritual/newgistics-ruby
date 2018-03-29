@@ -46,19 +46,6 @@ module Newgistics
         xml.Order(orderID: order.id) do
           xml.Warehouse(warehouseid: order.warehouse_id)
           xml.ShipMethod order.ship_method
-          xml.Company order.company
-          xml.Name order.name
-          xml.FirstName order.first_name
-          xml.LastName order.last_name
-          xml.Address1 order.address1
-          xml.Address2 order.address2
-          xml.City order.city
-          xml.State order.state
-          xml.Zip order.zip
-          xml.Country order.country
-          xml.Email order.email
-          xml.Phone order.phone
-          xml.IsResidential order.is_residential
           xml.InfoLine order.info_line
           xml.RequiresSignature order.requires_signature
           xml.IsInsured order.is_insured
