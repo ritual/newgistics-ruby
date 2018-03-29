@@ -21,6 +21,7 @@ http_interactions:
             <OrderDate>08/20/2017</OrderDate>
             <CustomerInfo>
               <Company/>
+              <Name>Wade Wilson</Name>
               <FirstName>Wade</FirstName>
               <LastName>Wilson</LastName>
               <Address1>75 Spring St</Address1>
@@ -64,7 +65,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       cache-control:
       - private
@@ -94,6 +95,6 @@ http_interactions:
             <error>Invalid API key</error>
           </errors>
         </response>
-    http_version: 
+    http_version:
   recorded_at: Thu, 07 Sep 2017 13:38:21 GMT
 recorded_with: VCR 3.0.3

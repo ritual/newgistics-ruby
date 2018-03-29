@@ -103,6 +103,7 @@ module Newgistics
       def customer_xml(customer, xml)
         xml.CustomerInfo do
           xml.Company customer.company
+          xml.Name customer.name
           xml.FirstName customer.first_name
           xml.LastName customer.last_name
           xml.Address1 customer.address1
