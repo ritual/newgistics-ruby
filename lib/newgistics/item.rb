@@ -1,10 +1,13 @@
 module Newgistics
   class Item
-    include Virtus.model
+    include Newgistics::Model
 
     attribute :id, String
 
     attribute :sku, String
+    attribute :upc, String
+    attribute :description, String
+    attribute :lot, String
     attribute :qty, Integer
     attribute :is_gift_wrapped, Boolean
     attribute :custom_fields, Hash
