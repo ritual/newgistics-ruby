@@ -1,5 +1,5 @@
-[![Code Climate](https://codeclimate.com/repos/5991e52637216b02640002d4/badges/9e19d346f6da0db0783c/gpa.svg)](https://codeclimate.com/repos/5991e52637216b02640002d4/feed)
-[![Test Coverage](https://codeclimate.com/repos/5991e52637216b02640002d4/badges/9e19d346f6da0db0783c/coverage.svg)](https://codeclimate.com/repos/5991e52637216b02640002d4/coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/ed9b1c5905ae5547414e/maintainability)](https://codeclimate.com/github/rocketsofawesome/newgistics-ruby/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/ed9b1c5905ae5547414e/test_coverage)](https://codeclimate.com/github/rocketsofawesome/newgistics-ruby/test_coverage)
 [ ![Codeship Status for rocketsofawesome/newgistics-ruby](https://app.codeship.com/projects/63cb9a70-68b6-0135-a28b-5ec5668067cc/status?branch=master)](https://app.codeship.com/projects/241459)
 # Newgistics
 
@@ -11,7 +11,7 @@ This Ruby gem allows you to interact with the Newgistics Fulfillment API.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'newgistics', github: 'rocketsofawesome/newgistics-ruby'
+gem 'newgistics'
 ```
 
 And then execute:
@@ -23,7 +23,7 @@ Here is a list of the available configuration options and their default values
 
 | Option          | Description                                                                                                                                                                                                                                                | Default Value                                |
 |-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
-| `host_url`        | The URL of the Newgistics API                                                                                                                                                                                                                              | `"https://apistaging.newgisticsfulfillment.com"` |
+| `api_base_url`        | The URL of the Newgistics API                                                                                                                                                                                                                              | `"https://apistaging.newgisticsfulfillment.com"` |
 | `api_key`         | Your Newgistics API key                                                                                                                                                                                                                                    | `nil`                                          |
 | `time_zone`       | The time zone used by Newgistics. When the API sends timestamps back it doesn't include a time zone, if it's not provided, the value of this setting will be used when parsing the timestamps into `Time` objects. You shouldn't need to change this setting | `"America/Denver"`                               |
 | `local_time_zone` | The time zone used by your application, all Newgistics timestamps will be translated to this time zone automatically.                                                                                                                                      | `"UTC"`                                         |
@@ -35,7 +35,7 @@ To set configuration options use the `Newgistics.configure` method:
 ```ruby
 Newgistics.configure do |config|
   config.api_key = ENV['NEWGISTICS_API_KEY']
-  config.host_url = ENV['NEWGISTIC_API_URL']
+  config.api_base_url = ENV['NEWGISTIC_API_URL']
   config.local_time_zone = "America/New_York"
 end
 ```
@@ -168,6 +168,29 @@ Newgistics::Inventory.
 You can use the `where` method to specify the parameters for the Search. Parameter keys will be automatically camelized when sent to
 Newgistics, for a full list of the available parameters refer to the Newgistics API documentation.
 
+### Manifests
+
+#### Creating a new Manifest in Newgistics
+
+```ruby
+manifest = Newgistics::Manifest.new(manifest_attributes)
+manifest.save
+```
+
+`manifest_attributes` is a `Hash` containing all the attributes for the manifest, the attributes should map one-to-one to the Newgistics API spec.
+
+`manifest.save` will return `true` if the manifest is placed successfully and `false` otherwise, any errors or warnings generated when creating the manifest are available under `manifest.errors` and `manifest.warnings` respectively.
+
+#### Canceling an existing Manifest in Newgistics
+
+```ruby
+manifest = Newgistics::Manifest.new(id: '123456')
+manifest.cancel
+```
+
+`manifest.cancel` will return `true` if the manifest is canceled successfully and `false` otherwise, any errors or warnings generated when cancelling the manifest are available under `manifest.errors` and `manifest.warnings` respectively. The cancel operation only requires the manifest to have an `id`, while other attributes can be set on the `manifest` object, they aren't required for cancelling it.
+
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
@@ -176,7 +199,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/newgistics. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/rocketsofawesome/newgistics-ruby. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
